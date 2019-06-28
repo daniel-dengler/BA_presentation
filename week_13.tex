@@ -1,0 +1,54 @@
+\documentclass[11pt]{beamer}
+\usetheme{Boadilla}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[frame number]{}
+
+\author{Daniel}
+\title{week 13}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+%\logo{} 
+%\institute{} 
+\date{28.6.2019} 
+%\subject{} 
+\begin{document}
+
+%\begin{frame}
+%\titlepage
+%\end{frame}
+
+%\begin{frame}
+%\tableofcontents
+%\end{frame}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{..\textbackslash include\textbackslash structural\textbackslash time\underline{\ }integration\textbackslash \\driver\underline{\ }quasi\underline{\ }static\underline{\ }problems.cpp}
+\begin{itemize}
+\item get\underline{\ }strain() line:104
+\item add\underline{\ }div\underline{\ }old\underline{\ }stress() line:121\\
+(rhs contribution is computed locally and assembled into global vector)
+\item move\underline{\ }mesh() line:225\\
+\end{itemize}
+ 
+\end{frame}{..\textbackslash include\textbackslash structural\textbackslash time\underline{\ }integration\textbackslash \\ QuadraturePointHistory.cpp}
+\begin{itemize}
+\item get\underline{\ }strain() line:65\\ (another get\underline{\ }strain compared to the one in driver\underline{\ }quasi\underline{\ }static\underline{\ }problems.cpp)
+\item get\underline{\ }stress\underline{\ }strain\underline{\ }tensor() line:50\\
+(stress \underline{\ }strain\underline{\ }tensor object in QuadraturePointHistory class to store Constitutive matrix)
+\item get\underline{\ }rotation\underline{\ }matrix() line:21 and 30\\
+(one fuction each for 2D and 3D)
+\item setup\underline{\ }QPH() line:80\\
+(in setup QPH the lame constants are set hard to their values. This should be done with the materialdescriptor, but there is no storage for the lame constants. Will not be needed if Material::apply is used.)
+\item update\underline{\ }QPH() line:136\\
+(use of get\underline{\ }strain , get\underline{\ }stress\underline{\ }strain\underline{\ }tensor , get\underline{\ }rotation\underline{\ }matrix )
+\end{itemize}
+\begin{frame}
+\end{frame}
+\end{document}

@@ -1,0 +1,112 @@
+\documentclass[11pt]{beamer}
+\usetheme{Boadilla}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[frame number]{}
+
+\author{Daniel}
+\title{week 12}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+%\logo{} 
+%\institute{} 
+\date[\today]{\today} 
+%\subject{} 
+
+
+%\begin{frame}
+%\titlepage
+%\end{frame}
+
+%\begin{frame}
+%\tableofcontents
+%\end{frame}
+
+\begin{document}
+\begin{frame}{•}
+\titlepage
+\end{frame}
+
+\section{Validation}
+\begin{frame}{Quasi Static Can Case}
+\begin{itemize}
+\item deal II Tutorial Step 18 code is used for reference solution 
+\item Parameters used in both programms:
+\end{itemize}
+\begin{enumerate}
+\item for conversion form E and $\nu$ to $\lambda$ and $\mu$
+\item $E=200e9$
+\item $\nu=0,3$
+\item $ \lambda = 1,153846e11 \frac{N}{m^{2}}$
+\item $ \mu = 7,692307e10 \frac{N}{m^{2}} $
+\item $g =9,81 \frac{m}{s^{2}}$
+\item $\varrho = 7700 \frac{kg}{m^{3}} $ 
+\end{enumerate}
+\begin{itemize}
+\item conversion formula
+\end{itemize}
+\begin{columns}
+\begin{column}{0.4\textwidth}
+$\lambda=\dfrac{E\nu}{(1+\nu)(1-2\nu)}$
+\end{column}
+\begin{column}{0.4\textwidth}
+$\mu=\dfrac{E}{2(1+\nu)}$
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Quasi Static Can Case}
+\begin{itemize}
+\item Norm of the incremental solution vector at every timestep
+\end{itemize}
+\begin{columns}
+\begin{column}{0.4\textwidth}
+dealstruct \\
+  $\begin{pmatrix}
+  12,602\\
+  12,634\\
+  12,726\\
+  12,843\\
+  13,018\\
+  13,330\\
+  14,026\\
+  16,042\\
+  22,927\\
+  42,166\\
+  \end{pmatrix}$
+\end{column}
+\begin{column}{0.4\textwidth}
+Step 18\\
+$\begin{pmatrix}
+12,5679\\
+12,6381\\
+12,7256\\
+12,8427\\
+13,0182\\
+13,3297\\
+14,0261\\
+16,0391\\
+22,917\\
+41.8591\\
+\end{pmatrix}$
+\end{column}
+\end{columns}
+\begin{itemize}
+\item the relative Error is about 1\% 
+\item while meeting peter step 18 was modified with amg preconditioner and relative tollerance was set higher so Norm of the incremental solution vector of both are the same
+\item The dealstruct is working!!
+\end{itemize}
+\end{frame}
+
+\begin{frame}{General problems}
+\begin{itemize}
+\item In dealstruct-Code with some parameters occured errors because of negative Jacobideterminats
+\item this problem occurred also in step 18 with some parametersets
+\item only for some parametersets a viable solution is producced otherwise it is aborting
+\end{itemize}
+\end{frame}
+\end{document}
